@@ -11,62 +11,71 @@ const Hero = () => {
   };
 
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center bg-gradient-blue relative overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-10 left-10 w-20 h-20 border border-luxo-gold rounded-full"></div>
-        <div className="absolute top-40 right-20 w-16 h-16 border border-luxo-gold rounded-full"></div>
-        <div className="absolute bottom-20 left-20 w-12 h-12 border border-luxo-gold rounded-full"></div>
-        <div className="absolute bottom-40 right-40 w-24 h-24 border border-luxo-gold rounded-full"></div>
-      </div>
-
-      <div className="container mx-auto px-4 text-center relative z-10">
-        <div className="max-w-4xl mx-auto">
-          {/* Logo Principal */}
-          <div className="mb-8 animate-fade-in">
+    <section id="home" className="pt-24 bg-white">
+      <div className="container mx-auto px-4">
+        <div className="relative h-[70vh] bg-gradient-to-r from-amber-50 to-stone-100 rounded-lg overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
             <img 
-              src="/lovable-uploads/d6746f67-dba9-4a30-855f-d822054b4569.png" 
-              alt="Luxo's Jalecos" 
-              className="h-32 md:h-40 w-auto mx-auto mb-6"
+              src="https://images.unsplash.com/photo-1559757148-5c350d0d3c56?auto=format&fit=crop&q=80&w=1200" 
+              alt="Jaleco Luxo's"
+              className="w-full h-full object-cover object-center opacity-90"
             />
+            <div className="absolute inset-0 bg-gradient-to-r from-white/40 to-transparent"></div>
           </div>
 
-          {/* Headline */}
-          <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 animate-fade-in">
-            Elegância e <span className="text-gradient-gold">Sofisticação</span>
-          </h1>
-          
-          <p className="text-xl md:text-2xl text-luxo-gold-light mb-8 animate-fade-in font-light">
-            Jalecos personalizados com acabamento artesanal exclusivo
-          </p>
+          {/* Content */}
+          <div className="relative z-10 h-full flex items-center">
+            <div className="max-w-lg ml-8 md:ml-16">
+              <p className="text-sm uppercase tracking-wider text-gray-600 mb-4 font-medium">
+                LANÇAMENTO
+              </p>
+              
+              <h1 className="text-4xl md:text-6xl font-light text-gray-800 mb-6 leading-tight">
+                preciosite
+              </h1>
+              
+              <p className="text-lg text-gray-600 mb-8 font-light">
+                Uma coleção que vai <em>além da moda</em>.
+              </p>
 
-          <p className="text-lg text-white/90 mb-12 max-w-2xl mx-auto animate-fade-in leading-relaxed">
-            Cada peça é única, confeccionada com detalhes em crochê e pingentes personalizados. 
-            Transforme seu uniforme em uma expressão de estilo e profissionalismo.
-          </p>
-
-          {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center animate-fade-in">
-            <Button 
-              onClick={() => scrollToSection('catalog')}
-              className="bg-gradient-gold text-luxo-blue-dark hover:shadow-lg transform hover:scale-105 transition-all duration-300 px-8 py-3 text-lg font-semibold"
-            >
-              Ver Catálogo
-            </Button>
-            <Button 
-              variant="outline" 
-              onClick={() => scrollToSection('about')}
-              className="border-luxo-gold text-luxo-gold hover:bg-luxo-gold hover:text-luxo-blue-dark transition-all duration-300 px-8 py-3 text-lg"
-            >
-              Conheça Nossa História
-            </Button>
+              <Button 
+                onClick={() => scrollToSection('catalog')}
+                className="bg-white text-gray-800 hover:bg-gray-100 border border-gray-300 px-8 py-3 text-sm uppercase tracking-wider font-medium transition-all duration-300"
+              >
+                SHOP NOW
+              </Button>
+            </div>
           </div>
         </div>
 
-        {/* Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 animate-float">
-          <div className="w-6 h-10 border-2 border-luxo-gold rounded-full flex justify-center">
-            <div className="w-1 h-3 bg-luxo-gold rounded-full mt-2 animate-pulse"></div>
+        {/* Product Grid Preview */}
+        <div className="py-16">
+          <div className="text-center mb-12">
+            <h2 className="text-2xl md:text-3xl font-light text-gray-800 mb-4">
+              BEST SELLERS
+            </h2>
+          </div>
+          
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((item) => (
+              <div key={item} className="group cursor-pointer">
+                <div className="aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden mb-3">
+                  <img 
+                    src={`https://images.unsplash.com/photo-${
+                      item === 1 ? '1576091160399-112ba8d25d1f' :
+                      item === 2 ? '1559757148-5c350d0d3c56' :
+                      item === 3 ? '1612277795421-9bc7706a4a34' :
+                      '1551601651-2a8555f1a136'
+                    }?auto=format&fit=crop&q=80&w=400`}
+                    alt={`Jaleco ${item}`}
+                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                  />
+                </div>
+                <h3 className="text-sm font-medium text-gray-800 mb-1">Jaleco Luxo's {item}</h3>
+                <p className="text-sm text-gray-600">R$ {189 + (item * 50)},90</p>
+              </div>
+            ))}
           </div>
         </div>
       </div>
