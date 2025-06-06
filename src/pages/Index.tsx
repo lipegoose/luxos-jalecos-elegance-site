@@ -2,7 +2,10 @@
 import React from 'react';
 import Header from '@/components/Header';
 import Hero from '@/components/Hero';
-import Catalog from '@/components/Catalog';
+import Featured from '@/components/Featured';
+import Collections from '@/components/Collections';
+import Novidades from '@/components/Novidades';
+import InspireSe from '@/components/InspireSe';
 import About from '@/components/About';
 import Testimonials from '@/components/Testimonials';
 import Contact from '@/components/Contact';
@@ -14,7 +17,10 @@ const Index = () => {
     <div className="min-h-screen">
       <Header />
       <Hero />
-      <Catalog />
+      <Featured />
+      <Collections />
+      <Novidades />
+      <InspireSe />
       <About />
       <Testimonials />
       <Contact />

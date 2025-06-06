@@ -21,16 +21,16 @@ const Testimonials = () => {
       id: 3,
       name: "Dra. Ana Carolina",
       profession: "Dentista",
-      text: "A personalização do pingente foi o toque especial que eu procurava. Meus pacientes sempre comentam sobre a beleza do meu jaleco.",
+      text: "A qualidade dos tecidos e o acabamento artesanal fazem toda a diferença. Meus pacientes sempre comentam sobre a beleza do meu jaleco.",
       image: "https://images.unsplash.com/photo-1612349317150-e413f6a5b16d?auto=format&fit=crop&q=80&w=100"
     }
   ];
 
   return (
-    <section id="testimonials" className="py-16 bg-white">
+    <section id="testimonials" className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-light text-gray-800 mb-4">
+          <h2 className="text-3xl font-light text-gray-800 mb-4 tracking-wide">
             DEPOIMENTOS
           </h2>
           <p className="text-gray-600 max-w-2xl mx-auto">
@@ -40,19 +40,19 @@ const Testimonials = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial) => (
-            <div key={testimonial.id} className="text-center">
+            <div key={testimonial.id} className="bg-white p-8 text-center">
               <div className="mb-6">
                 <img 
                   src={testimonial.image} 
                   alt={testimonial.name}
-                  className="w-20 h-20 rounded-full object-cover mx-auto mb-4 border-2 border-gray-200"
+                  className="w-16 h-16 rounded-full object-cover mx-auto mb-4"
                 />
-                <blockquote className="text-gray-600 italic leading-relaxed mb-4">
+                <blockquote className="text-gray-600 leading-relaxed mb-4 text-sm">
                   "{testimonial.text}"
                 </blockquote>
                 <div>
-                  <div className="font-medium text-gray-800">{testimonial.name}</div>
-                  <div className="text-sm text-gray-500">{testimonial.profession}</div>
+                  <div className="font-medium text-gray-800 text-sm">{testimonial.name}</div>
+                  <div className="text-xs text-gray-500 uppercase tracking-wide">{testimonial.profession}</div>
                 </div>
               </div>
             </div>

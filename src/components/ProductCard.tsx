@@ -1,6 +1,7 @@
 
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
+import { Heart } from 'lucide-react';
 
 interface ProductCardProps {
   id: string;
@@ -21,6 +22,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
   paymentLink
 }) => {
   const [isHovered, setIsHovered] = useState(false);
+  const [isFavorited, setIsFavorited] = useState(false);
 
   const handlePurchase = () => {
     window.open(paymentLink, '_blank');
@@ -32,40 +34,54 @@ const ProductCard: React.FC<ProductCardProps> = ({
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
     >
-      {/* Image */}
-      <div className="aspect-[3/4] bg-gray-100 rounded-lg overflow-hidden mb-3 relative">
+      {/* Image Container */}
+      <div className="relative aspect-[3/4] bg-gray-50 overflow-hidden mb-3">
         <img 
           src={image} 
           alt={name}
           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
         />
         
-        {/* Overlay with buttons on hover */}
+        {/* Heart Icon */}
+        <button 
+          onClick={() => setIsFavorited(!isFavorited)}
+          className="absolute top-3 right-3 bg-white/80 hover:bg-white p-2 rounded-full shadow-sm transition-all duration-300"
+        >
+          <Heart 
+            size={16} 
+            className={`${isFavorited ? 'fill-red-500 text-red-500' : 'text-gray-600'} transition-colors`}
+          />
+        </button>
+
+        {/* Quick Shop Button - Appears on Hover */}
         {isHovered && (
-          <div className="absolute inset-0 bg-black/10 flex items-end justify-center p-4 transition-opacity duration-300">
-            <div className="space-y-2 w-full">
-              <Button 
-                onClick={handlePurchase}
-                className="w-full bg-white text-gray-800 hover:bg-gray-100 text-sm font-medium"
-              >
-                COMPRAR
-              </Button>
-              <Button 
-                variant="outline"
-                className="w-full bg-transparent border-white text-white hover:bg-white hover:text-gray-800 text-sm"
-                onClick={() => window.open('https://wa.me/5511999999999?text=Olá! Gostaria de saber mais sobre este jaleco.', '_blank')}
-              >
-                DETALHES
-              </Button>
-            </div>
+          <div className="absolute bottom-3 left-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+            <Button 
+              onClick={handlePurchase}
+              className="w-full bg-luxo-blue hover:bg-luxo-blue-dark text-white text-sm font-light"
+            >
+              COMPRAR AGORA
+            </Button>
           </div>
         )}
       </div>
       
       {/* Product Info */}
-      <div className="text-center">
-        <h3 className="text-sm font-medium text-gray-800 mb-1">{name}</h3>
-        <p className="text-sm font-semibold text-gray-900">{price}</p>
+      <div className="text-left">
+        <h3 className="text-sm font-light text-gray-800 mb-1 leading-tight">{name}</h3>
+        <p className="text-sm font-medium text-gray-900">{price}</p>
+        
+        {/* Size Options */}
+        <div className="flex gap-1 mt-2">
+          {['P', 'M', 'G', 'GG'].map((size) => (
+            <button 
+              key={size}
+              className="w-8 h-8 border border-gray-300 text-xs font-light hover:border-luxo-blue hover:text-luxo-blue transition-colors"
+            >
+              {size}
+            </button>
+          ))}
+        </div>
       </div>
     </div>
   );
