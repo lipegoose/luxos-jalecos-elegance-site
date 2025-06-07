@@ -5,7 +5,7 @@ import Header from '@/components/Header';
 import Footer from '@/components/Footer';
 import ProductCard from '@/components/ProductCard';
 import WhatsAppButton from '@/components/WhatsAppButton';
-import { useFavorites } from '@/hooks/useFavorites';
+import { useFavorites } from '@/contexts/FavoritesContext';
 import { Button } from '@/components/ui/button';
 import { products } from '@/data/products';
 

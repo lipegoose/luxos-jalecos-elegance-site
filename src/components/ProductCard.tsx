@@ -1,8 +1,7 @@
-
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
-import { useFavorites } from '@/hooks/useFavorites';
+import { useFavorites } from '@/contexts/FavoritesContext';
 
 interface ProductCardProps {
   id: string;
