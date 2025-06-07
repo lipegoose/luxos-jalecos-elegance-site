@@ -38,11 +38,13 @@ const Header = () => {
           <nav className="flex items-center justify-between">
             {/* Logo */}
             <div className="flex items-center">
-              <img 
-                src="/lovable-uploads/d6746f67-dba9-4a30-855f-d822054b4569.png" 
-                alt="Luxo's Jalecos" 
-                className="h-8 w-auto"
-              />
+              <Link to="/">
+                <img 
+                  src="/lovable-uploads/d6746f67-dba9-4a30-855f-d822054b4569.png" 
+                  alt="Luxo's Jalecos" 
+                  className="h-8 w-auto"
+                />
+              </Link>
             </div>
 
             {/* Desktop Navigation - Center */}
@@ -53,12 +55,12 @@ const Header = () => {
               >
                 FEMININO
               </button>
-              <button 
-                onClick={() => scrollToSection('collections')}
+              <Link 
+                to="/colecoes"
                 className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm"
               >
                 COLEÇÕES
-              </button>
+              </Link>
               <Link 
                 to="/favoritos"
                 className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm"
@@ -100,12 +102,13 @@ const Header = () => {
                 >
                   FEMININO
                 </button>
-                <button 
-                  onClick={() => scrollToSection('collections')}
+                <Link 
+                  to="/colecoes"
                   className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm"
+                  onClick={() => setIsMobileMenuOpen(false)}
                 >
                   COLEÇÕES
-                </button>
+                </Link>
                 <Link 
                   to="/favoritos"
                   className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm"
