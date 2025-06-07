@@ -1,7 +1,8 @@
 
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Search, User, Heart, ShoppingBag } from 'lucide-react';
+import { Menu, X } from 'lucide-react';
 import { Button } from '@/components/ui/button';
+import { Link } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -58,6 +59,12 @@ const Header = () => {
               >
                 COLEÇÕES
               </button>
+              <Link 
+                to="/favoritos"
+                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm"
+              >
+                FAVORITOS
+              </Link>
               <button 
                 onClick={() => scrollToSection('about')}
                 className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm"
@@ -72,28 +79,15 @@ const Header = () => {
               </button>
             </div>
 
-            {/* Right Icons */}
-            <div className="flex items-center space-x-4">
-              <div className="hidden md:flex items-center space-x-3">
-                <Search size={20} className="text-white hover:text-luxo-gold cursor-pointer transition-colors" />
-                <User size={20} className="text-white hover:text-luxo-gold cursor-pointer transition-colors" />
-                <Heart size={20} className="text-white hover:text-luxo-gold cursor-pointer transition-colors" />
-                <div className="relative">
-                  <ShoppingBag size={20} className="text-white hover:text-luxo-gold cursor-pointer transition-colors" />
-                  <span className="absolute -top-2 -right-2 bg-luxo-gold text-luxo-blue-navy text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                </div>
-              </div>
-
-              {/* Mobile Menu Button */}
-              <Button
-                variant="ghost"
-                size="sm"
-                className="md:hidden text-white hover:text-luxo-gold"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              >
-                {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-              </Button>
-            </div>
+            {/* Mobile Menu Button */}
+            <Button
+              variant="ghost"
+              size="sm"
+              className="md:hidden text-white hover:text-luxo-gold"
+              onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            >
+              {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            </Button>
           </nav>
 
           {/* Mobile Menu */}
@@ -112,6 +106,13 @@ const Header = () => {
                 >
                   COLEÇÕES
                 </button>
+                <Link 
+                  to="/favoritos"
+                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm"
+                  onClick={() => setIsMobileMenuOpen(false)}
+                >
+                  FAVORITOS
+                </Link>
                 <button 
                   onClick={() => scrollToSection('about')}
                   className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm"

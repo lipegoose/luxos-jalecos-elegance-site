@@ -2,6 +2,7 @@
 import React, { useState } from 'react';
 import { Button } from '@/components/ui/button';
 import { Heart } from 'lucide-react';
+import { useFavorites } from '@/hooks/useFavorites';
 
 interface ProductCardProps {
   id: string;
@@ -14,6 +15,7 @@ interface ProductCardProps {
 }
 
 const ProductCard: React.FC<ProductCardProps> = ({
+  id,
   name,
   description,
   price,
@@ -22,10 +24,15 @@ const ProductCard: React.FC<ProductCardProps> = ({
   paymentLink
 }) => {
   const [isHovered, setIsHovered] = useState(false);
-  const [isFavorited, setIsFavorited] = useState(false);
+  const { toggleFavorite, isFavorite } = useFavorites();
+  const isFavorited = isFavorite(id);
 
   const handlePurchase = () => {
     window.open(paymentLink, '_blank');
+  };
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(id);
   };
 
   return (
@@ -44,7 +51,7 @@ const ProductCard: React.FC<ProductCardProps> = ({
         
         {/* Heart Icon */}
         <button 
-          onClick={() => setIsFavorited(!isFavorited)}
+          onClick={handleToggleFavorite}
           className="absolute top-3 right-3 bg-white/80 hover:bg-white p-2 rounded-full shadow-sm transition-all duration-300"
         >
           <Heart 
