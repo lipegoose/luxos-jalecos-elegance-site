@@ -67,18 +67,19 @@ export const useFavorites = () => {
 
   const toggleFavorite = (productId: string) => {
     console.log('🔄 toggleFavorite chamado para ID:', productId);
-    setFavorites(prev => {
-      console.log('🔄 Estado atual antes do toggle:', prev);
-      console.log('🔄 Verificando se', productId, 'está incluído:', prev.includes(productId));
+    
+    setFavorites(prevFavorites => {
+      console.log('🔄 Estado atual antes do toggle:', prevFavorites);
+      console.log('🔄 Verificando se', productId, 'está incluído:', prevFavorites.includes(productId));
       
-      if (prev.includes(productId)) {
+      if (prevFavorites.includes(productId)) {
         // Remove do array se já existe
-        const newFavorites = prev.filter(id => id !== productId);
+        const newFavorites = prevFavorites.filter(id => id !== productId);
         console.log('🔄 Removendo - novo estado:', newFavorites);
         return newFavorites;
       } else {
         // Adiciona ao array se não existe
-        const newFavorites = [...prev, productId];
+        const newFavorites = [...prevFavorites, productId];
         console.log('🔄 Adicionando - novo estado:', newFavorites);
         return newFavorites;
       }
