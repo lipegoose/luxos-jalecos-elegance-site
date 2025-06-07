@@ -69,8 +69,12 @@ const products = [
 const Favorites = () => {
   const { favorites } = useFavorites();
   
+  console.log('Produtos carregados:', products);
+  console.log('IDs favoritos:', favorites);
+  
   // Filtrar produtos que estão nos favoritos
   const favoriteProducts = products.filter(product => favorites.includes(product.id));
+  console.log('Produtos favoritos filtrados:', favoriteProducts);
 
   return (
     <div className="min-h-screen">
