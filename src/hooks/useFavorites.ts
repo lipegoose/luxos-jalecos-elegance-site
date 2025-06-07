@@ -1,9 +1,11 @@
+
 import { useState, useEffect } from 'react';
 
 const FAVORITES_KEY = 'luxos-jalecos-favorites';
 
 export const useFavorites = () => {
   const [favorites, setFavorites] = useState<string[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
 
   // Carregar favoritos do localStorage quando o hook é inicializado
   useEffect(() => {
@@ -20,13 +22,16 @@ export const useFavorites = () => {
         setFavorites([]);
       }
     }
+    setIsLoaded(true);
   }, []);
 
-  // Salvar favoritos no localStorage sempre que a lista mudar
+  // Salvar favoritos no localStorage apenas após carregamento inicial e quando a lista mudar
   useEffect(() => {
-    console.log('Salvando favoritos:', favorites);
-    localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
-  }, [favorites]);
+    if (isLoaded) {
+      console.log('Salvando favoritos:', favorites);
+      localStorage.setItem(FAVORITES_KEY, JSON.stringify(favorites));
+    }
+  }, [favorites, isLoaded]);
 
   const addToFavorites = (productId: string) => {
     setFavorites(prev => {
@@ -42,11 +47,15 @@ export const useFavorites = () => {
   };
 
   const toggleFavorite = (productId: string) => {
-    if (favorites.includes(productId)) {
-      removeFromFavorites(productId);
-    } else {
-      addToFavorites(productId);
-    }
+    setFavorites(prev => {
+      if (prev.includes(productId)) {
+        // Remove do array se já existe
+        return prev.filter(id => id !== productId);
+      } else {
+        // Adiciona ao array se não existe
+        return [...prev, productId];
+      }
+    });
   };
 
   const isFavorite = (productId: string) => {
