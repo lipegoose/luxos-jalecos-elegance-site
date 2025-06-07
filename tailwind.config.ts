@@ -1,4 +1,3 @@
-
 import type { Config } from "tailwindcss";
 
 export default {
@@ -66,6 +65,8 @@ export default {
 				// Cores personalizadas da Luxo's
 				'luxo-blue': '#1e3a5f',
 				'luxo-blue-dark': '#162b42',
+				'luxo-blue-light': '#2b6a9d',
+				'luxo-blue-navy': '#0f4068',
 				'luxo-gold': '#d4af37',
 				'luxo-gold-light': '#f4e87c',
 				'luxo-cream': '#fefefe',
