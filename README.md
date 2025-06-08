@@ -1,58 +1,56 @@
-# Welcome to your Lovable project
+# Luxo's Jalecos - Site Elegance
 
-## Project info
+## Informações do Projeto
 
-**URL**: https://lovable.dev/projects/b3b7eb8e-0b20-46a0-8f77-53e8edecee42
+Este é um projeto de site estático desenvolvido com tecnologias modernas para a Luxo's Jalecos.
 
-## How can I edit this code?
+## Como editar este código?
 
-There are several ways of editing your application.
+Existem várias maneiras de editar sua aplicação.
 
-**Use Lovable**
+**Desenvolvimento Local**
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/b3b7eb8e-0b20-46a0-8f77-53e8edecee42) and start prompting.
+Para trabalhar localmente usando seu próprio IDE, você pode clonar este repositório e fazer push das alterações.
 
-Changes made via Lovable will be committed automatically to this repo.
+O único requisito é ter Node.js & npm instalados - [instale com nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
+Siga estes passos:
 
 ```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
+# Passo 1: Clone o repositório usando a URL Git do projeto.
+git clone <URL_DO_SEU_REPOSITÓRIO>
 
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
+# Passo 2: Navegue até o diretório do projeto.
+cd luxos-jalecos-elegance-site
 
-# Step 3: Install the necessary dependencies.
-npm i
+# Passo 3: Instale as dependências necessárias.
+npm install
 
-# Step 4: Start the development server with auto-reloading and an instant preview.
+# Passo 4: Inicie o servidor de desenvolvimento com hot-reload.
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+**Desenvolvimento com Docker**
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+Para desenvolvimento com Docker, certifique-se de ter o Docker e Docker Compose instalados:
 
-**Use GitHub Codespaces**
+```sh
+# Inicie o ambiente de desenvolvimento
+docker-compose up
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+# Para parar o ambiente
+docker-compose down
+```
 
-## What technologies are used for this project?
+**Editar um arquivo diretamente no GitHub**
 
-This project is built with:
+- Navegue até o(s) arquivo(s) desejado(s).
+- Clique no botão "Edit" (ícone de lápis) no canto superior direito da visualização do arquivo.
+- Faça suas alterações e faça commit das mudanças.
+
+## Quais tecnologias são usadas neste projeto?
+
+Este projeto é construído com:
 
 - Vite
 - TypeScript
@@ -60,14 +58,27 @@ This project is built with:
 - shadcn-ui
 - Tailwind CSS
 
-## How can I deploy this project?
+## Como fazer o deploy deste projeto?
 
-Simply open [Lovable](https://lovable.dev/projects/b3b7eb8e-0b20-46a0-8f77-53e8edecee42) and click on Share -> Publish.
+Para fazer o deploy na Hostinger, siga estes passos:
 
-## Can I connect a custom domain to my Lovable project?
+```sh
+# 1. Instale as dependências
+npm install
 
-Yes, you can!
+# 2. Gere o build estático
+npm run build:static
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+# 3. Faça upload do conteúdo da pasta 'dist' para a pasta pública da Hostinger
+```
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+O site será gerado como arquivos estáticos na pasta `dist/`, prontos para serem hospedados em qualquer servidor web estático.
+
+## Posso conectar um domínio personalizado?
+
+Sim, você pode!
+
+Para conectar um domínio na Hostinger:
+1. Acesse o painel de controle da Hostinger
+2. Vá para "Domínios"
+3. Siga as instruções para configurar seu domínio personalizado
