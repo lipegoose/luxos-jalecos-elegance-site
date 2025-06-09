@@ -1,12 +1,14 @@
-
 import React, { useState, useEffect } from 'react';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Loader2 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isNavigating, setIsNavigating] = useState(false);
+  const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -17,12 +19,38 @@ const Header = () => {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const scrollToSection = (sectionId: string) => {
-    const element = document.getElementById(sectionId);
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+  // Efeito para lidar com o scroll após a navegação
+  useEffect(() => {
+    const hash = window.location.hash;
+    if (hash) {
+      const element = document.getElementById(hash.substring(1));
+      if (element) {
+        setTimeout(() => {
+          element.scrollIntoView({ behavior: 'smooth' });
+        }, 100);
+      }
     }
+  }, [location]);
+
+  const scrollToSection = async (sectionId: string) => {
+    setIsNavigating(true);
     setIsMobileMenuOpen(false);
+
+    if (location.pathname !== '/') {
+      // Se não estiver na página inicial, navega para ela com o hash
+      navigate(`/#${sectionId}`);
+    } else {
+      // Se já estiver na página inicial, apenas faz o scroll
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+
+    // Remove o estado de navegação após um pequeno delay
+    setTimeout(() => {
+      setIsNavigating(false);
+    }, 500);
   };
 
   return (
@@ -49,12 +77,6 @@ const Header = () => {
 
             {/* Desktop Navigation - Center */}
             <div className="hidden md:flex items-center space-x-8">
-              <button 
-                onClick={() => scrollToSection('featured')}
-                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm"
-              >
-                FEMININO
-              </button>
               <Link 
                 to="/colecoes"
                 className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm"
@@ -68,16 +90,44 @@ const Header = () => {
                 FAVORITOS
               </Link>
               <button 
+                onClick={() => scrollToSection('featured')}
+                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm flex items-center gap-2"
+                disabled={isNavigating}
+              >
+                DESTAQUE
+                {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
+              </button>
+              <button 
+                onClick={() => scrollToSection('novidades')}
+                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm flex items-center gap-2"
+                disabled={isNavigating}
+              >
+                NOVIDADES
+                {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
+              </button>
+              <button 
+                onClick={() => scrollToSection('inspire-se')}
+                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm flex items-center gap-2"
+                disabled={isNavigating}
+              >
+                INSPIRE-SE
+                {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
+              </button>
+              <button 
                 onClick={() => scrollToSection('about')}
-                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm"
+                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm flex items-center gap-2"
+                disabled={isNavigating}
               >
                 SOBRE
+                {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
               </button>
               <button 
                 onClick={() => scrollToSection('contact')}
-                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm"
+                className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-sm flex items-center gap-2"
+                disabled={isNavigating}
               >
                 CONTATO
+                {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
               </button>
             </div>
 
@@ -96,12 +146,6 @@ const Header = () => {
           {isMobileMenuOpen && (
             <div className="md:hidden border-t border-luxo-blue-light mt-4 pt-4">
               <div className="flex flex-col space-y-4">
-                <button 
-                  onClick={() => scrollToSection('featured')}
-                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm"
-                >
-                  FEMININO
-                </button>
                 <Link 
                   to="/colecoes"
                   className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm"
@@ -117,16 +161,44 @@ const Header = () => {
                   FAVORITOS
                 </Link>
                 <button 
+                  onClick={() => scrollToSection('featured')}
+                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm flex items-center gap-2"
+                  disabled={isNavigating}
+                >
+                  DESTAQUE
+                  {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
+                </button>
+                <button 
+                  onClick={() => scrollToSection('novidades')}
+                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm flex items-center gap-2"
+                  disabled={isNavigating}
+                >
+                  NOVIDADES
+                  {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
+                </button>
+                <button 
+                  onClick={() => scrollToSection('inspire-se')}
+                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm flex items-center gap-2"
+                  disabled={isNavigating}
+                >
+                  INSPIRE-SE
+                  {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
+                </button>
+                <button 
                   onClick={() => scrollToSection('about')}
-                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm"
+                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm flex items-center gap-2"
+                  disabled={isNavigating}
                 >
                   SOBRE
+                  {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
                 </button>
                 <button 
                   onClick={() => scrollToSection('contact')}
-                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm"
+                  className="text-white hover:text-luxo-gold transition-colors duration-300 font-light text-left text-sm flex items-center gap-2"
+                  disabled={isNavigating}
                 >
                   CONTATO
+                  {isNavigating && <Loader2 className="h-4 w-4 animate-spin" />}
                 </button>
               </div>
             </div>
