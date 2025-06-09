@@ -85,7 +85,7 @@ const Footer = () => {
 
         <div className="border-t border-gray-600 mt-8 pt-8 text-center">
           <p className="text-gray-300 text-sm">
-            © 2024 Luxo's Jalecos. Todos os direitos reservados.
+            © 2025 Luxo's Jalecos. Todos os direitos reservados. Uma criação <a href="https://hera-i.com.br/" className="inline-flex items-center" target="_blank" rel="noopener noreferrer" title="HeRa-i"><img src="https://hera-i.com.br/imgs/logo.png" alt="HeRa-i" className="h-5 hover:opacity-80 transition-opacity" /></a>.
           </p>
         </div>
       </div>
