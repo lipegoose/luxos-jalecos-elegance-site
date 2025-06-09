@@ -30,7 +30,8 @@ const ProductCard: React.FC<ProductCardProps> = ({
     window.open(paymentLink, '_blank');
   };
 
-  const handleToggleFavorite = () => {
+  const handleToggleFavorite = (e: React.MouseEvent) => {
+    e.stopPropagation();
     toggleFavorite(id);
   };
 

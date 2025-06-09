@@ -1,17 +1,10 @@
-
 import React from 'react';
+import { Heart } from 'lucide-react';
+import { useFavorites } from '@/contexts/FavoritesContext';
+import { products } from '@/data/products';
 
 const InspireSe = () => {
-  const inspirationImages = [
-    '/lovable-uploads/8a5bf6c3-13b9-4f33-9ae7-5bd79519f40a.png',
-    '/lovable-uploads/d0e10326-430d-4428-b506-6f7bd6f9ba70.png',
-    '/lovable-uploads/bc79764a-5435-4836-98c2-797e3b041fed.png',
-    '/lovable-uploads/eaf53d67-ec0f-4191-a8fd-7239c355e8e7.png',
-    '/lovable-uploads/bd152ced-da3b-49c7-a93c-33134f8f9cb5.png',
-    '/lovable-uploads/cd41ff5f-15b1-4bf3-9fa9-7d23dd138c13.png',
-    '/lovable-uploads/7393c34f-1359-4e2f-b3f2-d8873ada7ea3.png',
-    '/lovable-uploads/7c599a3d-6b22-44fd-a4fe-b54a962b12dd.png'
-  ];
+  const { toggleFavorite, isFavorite } = useFavorites();
 
   return (
     <section id="inspire-se" className="py-16 bg-gray-50">
@@ -26,17 +19,31 @@ const InspireSe = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-4 max-w-6xl mx-auto">
-          {inspirationImages.map((image, index) => (
-            <div key={index} className="group cursor-pointer">
-              <div className="aspect-square overflow-hidden">
-                <img 
-                  src={image} 
-                  alt={`Inspiração ${index + 1}`}
-                  className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
-                />
+          {products
+            .filter(product => product.inspire)
+            .map((product) => (
+              <div key={product.id} className="group cursor-pointer relative">
+                <div className="aspect-square overflow-hidden">
+                  <img 
+                    src={product.image} 
+                    alt={product.name}
+                    className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-500"
+                  />
+                  <button 
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      toggleFavorite(product.id);
+                    }}
+                    className="absolute top-3 right-3 bg-white/80 hover:bg-white p-2 rounded-full shadow-sm transition-all duration-300"
+                  >
+                    <Heart 
+                      size={16} 
+                      className={`${isFavorite(product.id) ? 'fill-red-500 text-red-500' : 'text-gray-600'} transition-colors`}
+                    />
+                  </button>
+                </div>
               </div>
-            </div>
-          ))}
+            ))}
         </div>
       </div>
     </section>

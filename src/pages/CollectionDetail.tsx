@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { ArrowLeft } from 'lucide-react';
@@ -7,6 +6,8 @@ import Footer from '@/components/Footer';
 import WhatsAppButton from '@/components/WhatsAppButton';
 import { Button } from '@/components/ui/button';
 import { collections } from '@/data/collections';
+import { products } from '@/data/products';
+import ProductCard from '@/components/ProductCard';
 
 const CollectionDetail = () => {
   const { collectionSlug } = useParams();
@@ -28,6 +29,8 @@ const CollectionDetail = () => {
       </div>
     );
   }
+
+  const collectionProducts = products.filter(product => product.colecao === collection.slug);
 
   return (
     <div className="min-h-screen">
@@ -59,19 +62,10 @@ const CollectionDetail = () => {
             </p>
           </div>
 
-          {/* Galeria de Imagens */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 max-w-7xl mx-auto">
-            {collection.images.map((image, index) => (
-              <div key={index} className="group cursor-pointer">
-                <div className="relative aspect-[3/4] bg-gray-50 overflow-hidden">
-                  <img 
-                    src={image} 
-                    alt={`${collection.name} - Imagem ${index + 1}`}
-                    className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
-                  />
-                  <div className="absolute inset-0 bg-black/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                </div>
-              </div>
+          {/* Grid de Produtos */}
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
+            {collectionProducts.map((product) => (
+              <ProductCard key={product.id} {...product} />
             ))}
           </div>
 

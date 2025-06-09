@@ -1,4 +1,3 @@
-
 import React from 'react';
 import ProductCard from './ProductCard';
 import { products } from '@/data/products';
@@ -14,9 +13,11 @@ const Featured = () => {
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 max-w-7xl mx-auto">
-          {products.map((product) => (
-            <ProductCard key={product.id} {...product} />
-          ))}
+          {products
+            .filter(product => product.destaque)
+            .map((product) => (
+              <ProductCard key={product.id} {...product} />
+            ))}
         </div>
       </div>
     </section>
